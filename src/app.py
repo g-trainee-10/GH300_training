@@ -44,17 +44,26 @@ activities = {
 
 @app.get("/")
 def root():
+    # ============================================================
+    # UAT-LOCKED: This route has passed UAT. DO NOT MODIFY.
+    # ============================================================
     return RedirectResponse(url="/static/index.html")
 
 
 @app.get("/activities")
 def get_activities():
+    # ============================================================
+    # UAT-LOCKED: This route has passed UAT. DO NOT MODIFY.
+    # ============================================================
     return activities
 
 
 @app.post("/activities/{activity_name}/signup")
 def signup_for_activity(activity_name: str, email: str):
     """Sign up a student for an activity"""
+    # ============================================================
+    # UAT-LOCKED: This route has passed UAT. DO NOT MODIFY.
+    # ============================================================
     # Validate activity exists
     if activity_name not in activities:
         raise HTTPException(status_code=404, detail="Activity not found")
