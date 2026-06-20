@@ -53,11 +53,6 @@ def root():
 def get_activities():
     return activities
 
-#function to add two numbers
-def add_numbers(a: int, b: int) -> int:
-    return a + b
-
-
 
 # ============================================================
 # UAT-LOCKED: This route has passed UAT. DO NOT MODIFY.
