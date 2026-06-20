@@ -15,7 +15,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          test -n "$GITHUB_TOKEN" || (echo "Missing GITHUB_TOKEN secret" && exit 1)
+          test -n "$GITHUB_TOKEN" || (echo "GITHUB_TOKEN is not available" && exit 1)
 
       - name: Run evals
         env:
