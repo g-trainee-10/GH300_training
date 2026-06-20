@@ -46,12 +46,16 @@ activities = {
 def root():
     return RedirectResponse(url="/static/index.html")
 
-
+# ============================================================
+# UAT-LOCKED: This route has passed UAT. DO NOT MODIFY.
+# ============================================================
 @app.get("/activities")
 def get_activities():
     return activities
 
-
+# ============================================================
+# UAT-LOCKED: This route has passed UAT. DO NOT MODIFY.
+# ============================================================
 @app.post("/activities/{activity_name}/signup")
 def signup_for_activity(activity_name: str, email: str):
     """Sign up a student for an activity"""
