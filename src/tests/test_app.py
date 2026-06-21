@@ -61,3 +61,28 @@ def test_root_redirects():
     response = client.get("/", follow_redirects=False)
     assert response.status_code in (302, 307)
     assert "/static/index.html" in response.headers["location"]
+
+
+def test_is_full_false_for_non_full_activity():
+    # Programming Class currently has 2 participants and max 20
+    response = client.get("/activities/Programming Class/is-full")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["activity"] == "Programming Class"
+    assert data["is_full"] is False
+
+
+def test_is_full_true_when_reaches_max():
+    # Temporarily fill Chess Club to its max
+    activities["Chess Club"]["participants"] = [f"user{i}@x.com" for i in range(12)]
+    response = client.get("/activities/Chess Club/is-full")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["activity"] == "Chess Club"
+    assert data["is_full"] is True
+
+
+def test_is_full_not_found_for_invalid_activity():
+    response = client.get("/activities/Nonexistent Activity/is-full")
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Activity not found"
