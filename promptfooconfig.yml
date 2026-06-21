@@ -18,6 +18,7 @@ tests:
 
   - description: "Output does NOT contain modification of get_activities"
     assert:
+
       - type: contains
         value: "def get_activities"
 
